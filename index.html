@@ -1511,6 +1511,47 @@
     .toc-grid { grid-template-columns: 1fr; }
   }
 
+
+  /* ─── REPORT MODAL ─── */
+  .modal-overlay { display:none !important; position:fixed; inset:0; background:rgba(5,5,4,0.94); z-index:9000; overflow-y:auto; padding:40px 20px; backdrop-filter:blur(8px); }
+  .modal-overlay.active { display:block !important; }
+  .modal-box { background:#0f0f0c; border:1px solid rgba(201,168,76,0.3); max-width:860px; margin:0 auto; position:relative; animation:modalIn 0.4s ease; }
+  @keyframes modalIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .modal-close { position:absolute; top:20px; right:24px; background:none; border:none; color:var(--gold); font-size:2rem; cursor:pointer; line-height:1; z-index:10; transition:color 0.2s; }
+  .modal-close:hover { color:var(--parchment); }
+  .modal-header { background:var(--ink); padding:48px 52px 36px; border-bottom:1px solid rgba(201,168,76,0.15); }
+  .modal-eyebrow { font-family:'DM Mono',monospace; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+  .modal-header h2 { font-family:'Cormorant Garamond',serif; font-size:2.2rem; font-weight:300; color:var(--parchment); margin-bottom:10px; }
+  .modal-header p { font-size:0.88rem; color:var(--mid); line-height:1.7; font-weight:300; max-width:600px; }
+  .modal-price-tag { display:inline-block; background:rgba(201,168,76,0.1); border:1px solid var(--gold); padding:8px 20px; margin-top:18px; font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); }
+  .modal-body { padding:40px 52px 52px; }
+  .report-chapter { border-bottom:1px solid rgba(201,168,76,0.1); padding:24px 0; }
+  .report-chapter:last-child { border-bottom:none; }
+  .chapter-header { display:flex; gap:20px; align-items:flex-start; cursor:pointer; margin-bottom:0; }
+  .chapter-header:hover .chapter-title { color:var(--gold); }
+  .chapter-num { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--gold); opacity:0.6; min-width:28px; padding-top:4px; }
+  .chapter-title { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:400; color:var(--parchment); flex:1; line-height:1.3; transition:color 0.2s; }
+  .chapter-toggle { color:var(--gold); font-size:1.2rem; font-weight:300; flex-shrink:0; margin-top:0; transition:transform 0.3s; width:24px; text-align:center; }
+  .chapter-content { display:none; padding:16px 0 0 48px; }
+  .chapter-content.open { display:block; }
+  .chapter-content p { font-size:0.83rem; color:var(--mid); line-height:1.8; font-weight:300; margin-bottom:12px; }
+  .chapter-content ul { list-style:none; margin-bottom:12px; }
+  .chapter-content ul li { font-size:0.81rem; color:var(--mid); padding:5px 0; display:flex; gap:8px; font-weight:300; }
+  .chapter-content ul li::before { content:'→'; color:var(--gold); font-size:0.7rem; flex-shrink:0; margin-top:2px; }
+  .chapter-highlight { background:rgba(201,168,76,0.06); border-left:3px solid var(--gold); padding:12px 16px; margin-top:12px; font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--parchment); font-style:italic; }
+  .modal-cta-bar { background:rgba(201,168,76,0.06); border-top:1px solid var(--border); padding:28px 52px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .modal-cta-bar p { font-size:0.85rem; color:var(--mid); font-weight:300; margin-bottom:4px; }
+  .modal-cta-bar strong { color:var(--parchment); }
+  .nri-session-block { background:rgba(74,92,78,0.1); border:1px solid rgba(74,92,78,0.3); padding:24px 28px; margin-bottom:20px; }
+  .nri-session-block h4 { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:#6a9470; margin-bottom:10px; }
+  .nri-session-block p { font-size:0.83rem; color:var(--mid); line-height:1.7; font-weight:300; }
+  .nri-session-block ul { list-style:none; margin-top:10px; }
+  .nri-session-block ul li { font-size:0.81rem; color:var(--mid); padding:4px 0; display:flex; gap:8px; font-weight:300; }
+  .nri-session-block ul li::before { content:'✓'; color:#6a9470; font-weight:600; }
+  .country-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+  .country-pill { background:rgba(74,92,78,0.15); border:1px solid rgba(74,92,78,0.3); padding:4px 12px; font-family:'DM Mono',monospace; font-size:0.62rem; color:#6a9470; letter-spacing:0.08em; }
+  @media(max-width:900px){ .modal-header{padding:32px 24px 24px;} .modal-body{padding:24px;} .modal-cta-bar{padding:20px 24px;} }
+
 </style>
 </head>
 <body>
@@ -2267,7 +2308,7 @@
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;border-bottom:1px solid rgba(201,168,76,0.08);display:flex;gap:10px;font-weight:300;"><span style="color:var(--gold);">↗</span> Red Flags Guide — 14 most expensive buyer mistakes</li>
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;display:flex;gap:10px;font-weight:300;"><span style="color:var(--gold);">↗</span> Infrastructure Value Map & Quarterly updates for 12 months</li>
         </ul>
-        <a href="mailto:vivekgarodia4@gmail.com?subject=Market Intelligence Report — Purchase Enquiry" class="btn-outline" style="width:100%;text-align:center;display:block;">Get Market Report →</a>
+        <button onclick="openReportModal('market')" class="btn-outline" style="width:100%;text-align:center;display:block;cursor:pointer;font-family:inherit;">View Full Report &amp; Purchase — ₹2,499 →</button>
         <div style="margin-top:14px;text-align:center;font-family:'DM Mono',monospace;font-size:0.58rem;color:rgba(107,101,96,0.6);">Best for: First-time researchers · NRIs starting due diligence · Professionals wanting market literacy</div>
       </div>
 
@@ -2290,7 +2331,7 @@
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;border-bottom:1px solid rgba(139,58,42,0.1);display:flex;gap:10px;font-weight:300;"><span style="color:var(--rust);">✓</span> <strong style="color:var(--parchment);">NRI Remote Support</strong> — Video site tours, POA guidance, NRE/NRO coordination, FEMA compliance</li>
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;display:flex;gap:10px;font-weight:300;"><span style="color:var(--rust);">✓</span> <strong style="color:var(--parchment);">90-Day Post-Purchase Helpdesk</strong> — Registration, possession, society, and rental setup support</li>
         </ul>
-        <a href="mailto:vivekgarodia4@gmail.com?subject=Full Consulting Service — Enquiry" class="btn-primary" style="width:100%;text-align:center;display:block;background:var(--rust);">Start Consulting Engagement →</a>
+        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com?subject=Full Consulting Enquiry';return false;" class="btn-primary" style="width:100%;text-align:center;display:block;background:var(--rust);">Start Consulting Engagement — ₹80,000 →</a>
         <div style="margin-top:14px;text-align:center;font-family:'DM Mono',monospace;font-size:0.58rem;color:rgba(107,101,96,0.6);">Best for: Serious buyers · NRIs purchasing remotely · HNIs building a portfolio · First-time Mumbai investors</div>
       </div>
 
@@ -2312,7 +2353,7 @@
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;border-bottom:1px solid rgba(201,168,76,0.08);display:flex;gap:10px;font-weight:300;"><span style="color:#6a9470;">↗</span> Power of Attorney — when to use it, risks, and safeguards</li>
           <li style="font-size:0.8rem;color:var(--mid);padding:9px 0;display:flex;gap:10px;font-weight:300;"><span style="color:#6a9470;">↗</span> Written summary note of all key rules post-session</li>
         </ul>
-        <a href="mailto:vivekgarodia4@gmail.com?subject=International Rules Advisory — Session Booking" class="btn-outline" style="width:100%;text-align:center;display:block;border-color:rgba(106,148,112,0.5);color:#6a9470;">Book Regulatory Session →</a>
+        <button onclick="openReportModal('nri')" class="btn-outline" style="width:100%;text-align:center;display:block;cursor:pointer;font-family:inherit;border-color:rgba(106,148,112,0.5);color:#6a9470;">View Session Details &amp; Book — ₹5,000 →</button>
         <div style="margin-top:14px;text-align:center;font-family:'DM Mono',monospace;font-size:0.58rem;color:rgba(107,101,96,0.6);">Best for: NRIs abroad · Foreign nationals · Anyone navigating FEMA/DTAA for the first time</div>
       </div>
 
@@ -2322,7 +2363,7 @@
     <div style="background:rgba(201,168,76,0.06);border:1px solid var(--border);border-top:none;padding:24px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-style:italic;">Not sure which model is right for you? Reach out and we'll advise honestly.</div>
       <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
-        <a href="mailto:vivekgarodia4@gmail.com" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">✉ vivekgarodia4@gmail.com</a>
+        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">✉ vivekgarodia4@gmail.com</a>
         <a href="tel:+919867765454" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">📞 +91 98677 65454</a>
       </div>
     </div>
@@ -2370,7 +2411,7 @@
       <div class="service-num" style="color:rgba(201,168,76,0.3);">→</div>
       <h3 style="color:var(--parchment);">Begin with a Discovery Call</h3>
       <p style="color:var(--mid);">Every advisory engagement begins with a 45-minute complimentary discovery call — no obligation, no hard sell. We assess your objectives, answer your immediate questions, and recommend the right level of engagement honestly.</p>
-      <a href="mailto:vivekgarodia4@gmail.com" class="btn-primary" style="margin-top:24px;display:inline-block;">Schedule Discovery Call →</a>
+      <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com?subject=Discovery Call Request';return false;" class="btn-primary" style="margin-top:24px;display:inline-block;">Schedule Discovery Call →</a>
     </div>
   </div>
 
@@ -2592,8 +2633,8 @@
     <div class="section-label">Expert Advisory</div>
     <h2>Let's Have a <em>Conversation</em></h2>
     <p>If you're ready to move beyond research and want a trusted partner who will protect your capital the way they'd protect their own, start with our complimentary 45-minute discovery call. No hard sell. No obligation. Just an honest assessment of whether we can genuinely add value to your specific situation.</p>
-    <a href="mailto:vivekgarodia4@gmail.com" class="btn-primary">Schedule Discovery Call</a>
-    <p style="margin-top:16px;font-family:'DM Mono',monospace;font-size:0.6rem;color:rgba(107,101,96,0.7);letter-spacing:0.08em;">vivekgarodia4@gmail.com · +91 98677 65454 · Mumbai, India</p>
+    <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com?subject=Discovery Call Request';return false;" class="btn-primary">Schedule Discovery Call</a>
+    <p style="margin-top:16px;font-family:'DM Mono',monospace;font-size:0.6rem;color:rgba(107,101,96,0.7);letter-spacing:0.08em;">vivekgarodia4[at]gmail.com · +91 98677 65454 · Mumbai, India</p>
   </div>
 </div>
 
@@ -2632,54 +2673,360 @@
       <li><a href="#product">Market Intelligence Report — ₹2,499</a></li>
       <li><a href="#consulting">Full Consulting Service — ₹80,000</a></li>
       <li><a href="#consulting">International Advisory — ₹5,000</a></li>
-      <li><a href="mailto:vivekgarodia4@gmail.com">vivekgarodia4@gmail.com</a></li>
+      <li><a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;">vivekgarodia4@gmail.com</a></li>
       <li><a href="tel:+919867765454">+91 98677 65454</a></li>
     </ul>
   </div>
 </footer>
 
 <div class="footer-bottom">
-  <p>© 2025 Bombay Capital Real Estate Intelligence. vivekgarodia4@gmail.com · +91 98677 65454 · Mumbai, India</p>
+  <p>© 2025 Bombay Capital Real Estate Intelligence. vivekgarodia4[at]gmail.com · +91 98677 65454 · Mumbai, India</p>
   <p>Privacy Policy · Terms of Use · RERA Advisory Disclaimer</p>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Market tab switcher
+
+<!-- MARKET REPORT MODAL -->
+<div class="modal-overlay" id="reportModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div class="modal-header">
+      <div class="modal-eyebrow">Digital Market Intelligence Report — Preview</div>
+      <h2>Mumbai Property <em>Compass</em> 2025</h2>
+      <p>A comprehensive 10-chapter intelligence report covering every dimension of Mumbai's real estate market. Click any chapter below to read the full content you receive upon purchase.</p>
+      <div class="modal-price-tag">₹2,499 — One-Time Purchase · Instant Digital Delivery</div>
+    </div>
+    <div class="modal-body">
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">01</span><span class="chapter-title">Mumbai Market Overview 2025 — The Big Picture</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>Mumbai recorded 147,000+ registrations in 2024 — a decade high. This chapter maps the full macro landscape: market size of ₹4.2 lakh crore, 2024 transaction volumes vs 5-year average, price cycle positioning, demand segmentation (end-use vs NRI vs institutional), and unsold inventory at 8.2 months — lowest since 2016.</p>
+          <ul>
+            <li>Market size, transaction volume, and 5-year trend analysis</li>
+            <li>Where Mumbai sits in the price cycle vs historical peaks</li>
+            <li>Demand breakdown: who is buying, what, and where</li>
+            <li>2025 outlook: base case, bull case, risk scenario with price projections</li>
+            <li>Mumbai vs Pune, Bengaluru, Hyderabad — why Mumbai remains primary</li>
+          </ul>
+          <div class="chapter-highlight">"Mumbai has never recorded a decade of negative returns. Its structural supply constraints and economic gravity make it Asia's most defensively positioned market."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">02</span><span class="chapter-title">Micro-Market Price Atlas — 8 Corridors, Full Data</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>Mumbai is eight distinct investment corridors, not one market. This chapter gives you the granular data for each — price per sqft, 1-year and 3-year appreciation, rental yield benchmarks, supply availability by segment, and investor profile suitability.</p>
+          <ul>
+            <li>South Mumbai — ₹55K–2.2L/sqft · 3.5–5% yield · Heritage supply constraints</li>
+            <li>BKC & Bandra West — ₹45K–1.4L/sqft · 5–8% commercial yield · BFSI tenant base</li>
+            <li>Andheri–Jogeshwari — ₹18K–38K/sqft · 4–6% yield · Metro 2A/7 connectivity premium</li>
+            <li>Powai & Hiranandani — ₹22K–42K/sqft · 5–7% yield · IIT/tech tenant base</li>
+            <li>Thane & Navi Mumbai — ₹8K–22K/sqft · Airport and MTHL catalysts</li>
+            <li>Panvel / Airport Zone — ₹6K–14K/sqft · 25–35% projected 4-year appreciation</li>
+            <li>Dharavi Redevelopment Zone · Emerging nodes: Chembur, Mulund, Vikhroli</li>
+          </ul>
+          <div class="chapter-highlight">"Knowing the city-wide average tells you almost nothing. Knowing the difference between Worli sea-facing and a Panvel pre-launch plot tells you everything."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">03</span><span class="chapter-title">Infrastructure Value Map — ₹1.5 Lakh Crore Reshaping Mumbai</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>Each major infrastructure project creates a permanent repricing of its surrounding micro-market. This chapter maps every major project to its direct impact corridor with appreciation data and investor timing guidance.</p>
+          <ul>
+            <li>Mumbai Coastal Road — South Mumbai sea-facing premium +18–24% since opening</li>
+            <li>Metro Line 3 (Aqua Line) — Station-adjacent properties repriced 12–16%</li>
+            <li>Mumbai Trans Harbour Link — Navi Mumbai now 20 minutes from South Mumbai</li>
+            <li>Navi Mumbai International Airport — Panvel/Ulwe/Dronagiri in direct appreciation zone</li>
+            <li>Dharavi Redevelopment — ₹26,000 crore Adani project: central Mumbai land unlock</li>
+            <li>Each project: timeline, affected markets, historical comparable, investor action note</li>
+          </ul>
+          <div class="chapter-highlight">"The window to buy before infrastructure repricing completes is typically 18–36 months before the project opens."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">04</span><span class="chapter-title">Developer Reputation Rankings — Independent 8-Dimension Assessment</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>16 active Mumbai developers assessed across 8 dimensions using public RERA records, buyer complaints, independent site inspections, and resale transaction data. No developer paid for their rating.</p>
+          <ul>
+            <li>Tier 1: Lodha, Oberoi, Godrej, Hiranandani, Piramal, Kalpataru, Shapoorji, Prestige</li>
+            <li>Tier 2: Raymond Realty, Rustomjee, Dosti, Mahindra, Runwal, Adani, Sunteck, Ekta</li>
+            <li>8 dimensions: Delivery record · RERA compliance · Spec adherence · Design quality · After-sales · Resale liquidity · Investor ROI · Society handover</li>
+            <li>RERA complaint counts and resolution rates per developer</li>
+            <li>Average delivery delay over last 10 projects per developer</li>
+            <li>Resale premium/discount vs micro-market average</li>
+          </ul>
+          <div class="chapter-highlight">"Oberoi leads on quality. Lodha leads on resale liquidity. They are not the same thing — and the distinction determines your ROI."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">05</span><span class="chapter-title">NRI Buying Checklist — 25 Steps from Abroad to Registered Owner</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>Every step of a Mumbai property purchase as an NRI — in order, with the consequences of skipping each step clearly explained.</p>
+          <ul>
+            <li>Steps 1–4: Confirming NRI/PIO status and FEMA eligibility</li>
+            <li>Steps 5–8: NRE vs NRO account choice — and why it affects repatriation permanently</li>
+            <li>Steps 9–12: Power of Attorney — when needed, how to structure, what never to delegate</li>
+            <li>Steps 13–16: Due diligence from abroad — title, RERA, OC remotely</li>
+            <li>Steps 17–20: Agreement to Sale, payment milestones, TDS obligations</li>
+            <li>Steps 21–25: Registration, post-possession mutation, rental setup</li>
+          </ul>
+          <div class="chapter-highlight">"The most expensive mistake NRI buyers make: not having a FEMA-compliant fund flow structure before signing. Setting it up after creates a tangle that takes months to resolve."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">06</span><span class="chapter-title">Legal Checklist Before Signing — 32-Point Due Diligence</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>What your own advocate should verify before you sign anything — not the developer's lawyer.</p>
+          <ul>
+            <li>Title verification: chain of title, 30-year history, disputes or litigation</li>
+            <li>RERA status: active registration, escrow compliance, plan match</li>
+            <li>OC/CC status: when issued, by which authority, any violations</li>
+            <li>Encumbrance Certificate: mortgages, liens, charges on the property</li>
+            <li>Carpet area calculation per RERA definition — not super built-up area</li>
+            <li>Agreement clause review: delay penalties, force majeure, cancellation terms</li>
+          </ul>
+          <div class="chapter-highlight">"The three most common deal-killers in due diligence: unclear title chain, unresolved RERA complaints, and OC not received for a 'ready' project."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">07</span><span class="chapter-title">ROI Benchmarks — All-In Cost Models Across 6 Micro-Markets</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>The full all-in cost model for Mumbai property investment — accounting for every cost most calculations miss.</p>
+          <ul>
+            <li>All-in cost components: stamp duty 5%, registration 1%, GST 5%/0%, brokerage, fitout, society deposit</li>
+            <li>Example: ₹2Cr property — sticker vs true acquisition cost (₹2.28 Cr)</li>
+            <li>Rental yield models: gross vs net after maintenance, property tax, vacancy allowance</li>
+            <li>Capital appreciation: base 8%pa / bull 15%pa / bear 3%pa — by corridor</li>
+            <li>Net IRR comparison: ₹75L in Panvel vs ₹3Cr in BKC vs ₹1.5Cr in Andheri</li>
+            <li>Exit cost modelling: capital gains tax, TDS, broker fees, legal costs</li>
+          </ul>
+          <div class="chapter-highlight">"The ROI on paper and the ROI in your bank account are two very different numbers."</div>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">08</span><span class="chapter-title">Red Flags & Common Mistakes — 14 Most Expensive Buyer Errors</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <p>Real mistakes from actual Mumbai transactions — each with the financial consequence attached.</p>
+          <ul>
+            <li>Buying from a developer not on MahaRERA — no legal recourse if delayed</li>
+            <li>Confusing super built-up with carpet area — paying 35% more per sqft than you think</li>
+            <li>Skipping title search on resale — inheriting a disputed property</li>
+            <li>Signing Agreement to Sale without lawyer review — developer-friendly fine print</li>
+            <li>Paying more than 10% before registration — illegal under RERA, yet common</li>
+            <li>NRI buying from NRO instead of NRE — losing full repatriation rights permanently</li>
+            <li>Relying on developer's lawyer for due diligence — classic conflict of interest</li>
+            <li>Buying 'ready' project without OC confirmation — legally may not be complete</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">09</span><span class="chapter-title">Mumbai Real Estate Glossary — 45 Terms Decoded</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <ul>
+            <li><strong style="color:var(--parchment)">FSI</strong> — Floor Space Index: ratio of floor area to plot. Higher FSI = more construction allowed</li>
+            <li><strong style="color:var(--parchment)">TDR</strong> — Transferable Development Rights: allows construction beyond base FSI</li>
+            <li><strong style="color:var(--parchment)">Carpet Area</strong> — Actual usable floor area within walls. RERA mandates all pricing in carpet area</li>
+            <li><strong style="color:var(--parchment)">Super Built-Up</strong> — Carpet + proportional common areas. Often 25–40% larger than carpet area</li>
+            <li><strong style="color:var(--parchment)">OC</strong> — Occupancy Certificate: confirms building is complete and safe to occupy</li>
+            <li><strong style="color:var(--parchment)">Conveyance</strong> — Transfer of land from developer to housing society — must happen within 3 years of OC</li>
+            <li><strong style="color:var(--parchment)">SRA</strong> — Slum Rehabilitation Authority project on slum land</li>
+            <li>+ 38 more terms: MHADA, MahaRERA, encumbrance, mutation, stamp duty, CRZ, and more</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="report-chapter">
+        <div class="chapter-header" onclick="toggleChapter(this)">
+          <span class="chapter-num">10</span><span class="chapter-title">Resource & Advisor Directory — Vetted Contacts Across Mumbai</span><span class="chapter-toggle">+</span>
+        </div>
+        <div class="chapter-content">
+          <ul>
+            <li>RERA Lawyers: 4 recommended advocates for Mumbai property transactions</li>
+            <li>FEMA & CA Services: 3 CAs specialising in NRI taxation and FEMA compliance</li>
+            <li>NRI Banking Desks: best NRE/NRO setups at SBI, HDFC, ICICI, Axis</li>
+            <li>Property Managers: vetted rental management firms for NRI/absentee landlords</li>
+            <li>Home Loan Brokers: best rates for resident Indian and NRI borrowers Q1 2025</li>
+            <li>MahaRERA Portal: step-by-step guide to verifying any project or complaint</li>
+          </ul>
+          <div class="chapter-highlight">"The right lawyer and CA are not costs — they are the cheapest insurance in any Mumbai property transaction."</div>
+        </div>
+      </div>
+
+    </div><!-- modal-body -->
+    <div class="modal-cta-bar">
+      <div>
+        <p><strong>Get the Full Mumbai Property Compass 2025</strong></p>
+        <p>80+ pages · PDF + Excel ROI Calculator · Instant delivery after payment</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--gold);">₹2,499</span>
+        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com?subject=Market Report Purchase - Rs 2499&body=Hi, I would like to purchase the Mumbai Property Compass 2025 report. Please share payment details.';return false;" class="btn-primary">Purchase — Contact Us →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NRI ADVISORY MODAL -->
+<div class="modal-overlay" id="nriModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeNriModal()">×</button>
+    <div class="modal-header">
+      <div class="modal-eyebrow">Specialist Advisory — International Rules & Regulations</div>
+      <h2>NRI & Foreign Investor <em>Regulatory Session</em></h2>
+      <p>2 focused sessions for NRIs, PIOs and foreign nationals who need complete clarity on India's legal and regulatory framework before making any property decision.</p>
+      <div class="modal-price-tag" style="border-color:#6a9470;color:#6a9470;">₹5,000 — 2 Sessions · Written Summary Included</div>
+    </div>
+    <div class="modal-body">
+      <div class="nri-session-block">
+        <h4>Session 1 — Your Legal Rights & FEMA Framework (60 Minutes)</h4>
+        <p>Complete walkthrough of what you can and cannot do as an NRI buying property in India.</p>
+        <ul>
+          <li>FEMA Section 6: full scope of NRI property purchase rights</li>
+          <li>Property types you can buy freely — residential and commercial</li>
+          <li>NRE vs NRO account: fund flow rules and repatriation impact</li>
+          <li>Power of Attorney: when to use, what to never delegate, how to structure safely</li>
+          <li>Joint purchase: NRI + resident Indian — legal structure</li>
+          <li>Gift and inheritance rules — tax implications</li>
+        </ul>
+      </div>
+      <div class="nri-session-block">
+        <h4>Session 2 — Taxation, DTAA & Repatriation (60 Minutes)</h4>
+        <p>Every tax obligation from purchase through ownership to eventual sale — and how to legally minimise your liability using applicable tax treaties.</p>
+        <ul>
+          <li>Section 195 TDS: deduction rate, timing, and Lower Deduction Certificate</li>
+          <li>Capital Gains Tax: LTCG vs STCG rates, indexation benefit for NRIs</li>
+          <li>DTAA analysis specific to your country of residence</li>
+          <li>Repatriation: USD 1M limit, NRE vs NRO route, documentation required</li>
+          <li>Rental income taxation in India — 30% deduction allowance</li>
+          <li>Exit planning: optimal structure for future property sale</li>
+        </ul>
+        <div class="country-pills">
+          <span class="country-pill">🇦🇪 UAE</span><span class="country-pill">🇺🇸 USA</span><span class="country-pill">🇬🇧 UK</span>
+          <span class="country-pill">🇸🇬 Singapore</span><span class="country-pill">🇨🇦 Canada</span><span class="country-pill">🇦🇺 Australia</span>
+          <span class="country-pill">🇩🇪 Germany</span><span class="country-pill">🇳🇱 Netherlands</span>
+        </div>
+      </div>
+      <div class="nri-session-block">
+        <h4>What You Receive After Both Sessions</h4>
+        <ul>
+          <li>Written summary note of all key rules — your personal reference document</li>
+          <li>FEMA compliance checklist tailored to your country</li>
+          <li>DTAA summary specific to your country</li>
+          <li>Recommended CA and legal contacts for your needs</li>
+          <li>14-day email follow-up for clarification questions</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-cta-bar">
+      <div>
+        <p><strong>Book Your 2-Session NRI Regulatory Advisory</strong></p>
+        <p>Sessions via video call · All time zones · Within 48 hours of booking</p>
+      </div>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#6a9470;">₹5,000</span>
+        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com?subject=NRI Advisory Session Booking - Rs 5000&body=Hi, I would like to book the 2-session NRI Regulatory Advisory. My country of residence: . My availability: . Please share payment details.';return false;" class="btn-outline" style="border-color:#6a9470;color:#6a9470;">Book Session →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── MODAL FUNCTIONS ──
+  function openReportModal(type) {
+    var id = (type === 'nri') ? 'nriModal' : 'reportModal';
+    var el = document.getElementById(id);
+    if (el) {
+      el.style.display = 'block';
+      el.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+  function closeModal() {
+    var el = document.getElementById('reportModal');
+    el.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeNriModal() {
+    var el = document.getElementById('nriModal');
+    el.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('reportModal').addEventListener('click', function(e){ if(e.target===this) closeModal(); });
+  document.getElementById('nriModal').addEventListener('click', function(e){ if(e.target===this) closeNriModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape'){closeModal();closeNriModal();} });
+  function toggleChapter(header) {
+    var content = header.nextElementSibling;
+    var toggle = header.querySelector('.chapter-toggle');
+    var isOpen = content.classList.contains('open');
+    document.querySelectorAll('.chapter-content').forEach(function(c){c.classList.remove('open');});
+    document.querySelectorAll('.chapter-toggle').forEach(function(t){t.textContent='+';});
+    if (!isOpen) { content.classList.add('open'); toggle.textContent = '−'; }
+  }
+
+  // ── MARKET SWITCHER ──
   function showMarket(id, el) {
-    // Hide all
-    document.querySelectorAll('[id^="market-"]').forEach(m => {
-      m.className = 'market-detail-hidden';
-    });
-    document.querySelectorAll('.market-nav-item').forEach(n => {
-      n.classList.remove('active');
-    });
-    // Show selected
+    document.querySelectorAll('[id^="market-"]').forEach(function(m){m.className='market-detail-hidden';});
+    document.querySelectorAll('.market-nav-item').forEach(function(n){n.classList.remove('active');});
     document.getElementById('market-' + id).className = 'market-detail-active';
     el.classList.add('active');
   }
 
-  // Intersection observer for fade-in animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+  // ── SCROLL ANIMATIONS ──
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.style.opacity='1';
+        entry.target.style.transform='translateY(0)';
       }
     });
-  }, { threshold: 0.1 });
-
-  // Animate cards on scroll
-  document.querySelectorAll('.why-card, .insight-card, .dev-card, .price-card, .service-card, .case-card, .team-card, .diff-item, .consult-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  },{threshold:0.1});
+  document.querySelectorAll('.why-card,.insight-card,.dev-card,.service-card,.case-card,.team-card,.diff-item,.consult-card').forEach(function(el){
+    el.style.opacity='0'; el.style.transform='translateY(24px)';
+    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
 
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' }
+  // ── SMOOTH SCROLL ──
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var href = this.getAttribute('href');
+      if(href.length>1){
+        var t=document.querySelector(href);
+        if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+      }
+    });
+  });
+
+  // ── NAV SCROLL ──
+  window.addEventListener('scroll',function(){
+    var nav=document.querySelector('nav');
+    nav.style.background = window.scrollY>80 ? 'rgba(10,10,8,0.98)' : 'rgba(10,10,8,0.88)';
+  });
+</script>
+</body>
+</html>
