@@ -151,6 +151,12 @@
     color: var(--gold);
   }
 
+  /* ── TAGLINE HIGHLIGHT ── */
+  .hero-highlight {
+    color: var(--gold);
+    font-style: italic;
+    font-weight: 600;
+  }
   .hero-sub {
     font-size: 1rem;
     color: var(--mid);
@@ -1669,7 +1675,7 @@
   <div class="hero-left">
     <div class="hero-eyebrow">Mumbai Real Estate Intelligence</div>
     <h1>Where <em>Capital</em> Meets the City That Never Stops</h1>
-    <p class="hero-sub">Mumbai is Asia's most resilient property market — but opportunity without the right intelligence is just noise. We bridge the gap between global capital and Mumbai's most compelling investment propositions.</p>
+    <p class="hero-sub">Tired of biased property advice in Mumbai? We're the independent voice that tells you exactly <span class="hero-highlight">what to buy</span>, <span class="hero-highlight">what to avoid</span>, and <span class="hero-highlight">why</span>.</p>
     <div class="hero-buttons">
       <a href="#product" class="btn-primary">Explore Market Reports</a>
       <a href="#consulting" class="btn-outline">Speak to an Advisor</a>
@@ -2457,7 +2463,7 @@
     <div style="background:rgba(201,168,76,0.06);border:1px solid var(--border);border-top:none;padding:24px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
       <div style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--parchment);font-style:italic;">Not sure which model is right for you? Reach out and we'll advise honestly.</div>
       <div style="display:flex;gap:32px;align-items:center;flex-wrap:wrap;">
-        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">✉ vivekgarodia4@gmail.com</a>
+        <a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">✉ <span class="__cf_email__" data-cfemail="16607f60737d71776479727f772256717b777f7a3875797b">[email&#160;protected]</span></a>
         <a href="tel:+919867765454" style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--gold);text-decoration:none;letter-spacing:0.08em;">📞 +91 98677 65454</a>
       </div>
     </div>
@@ -2795,7 +2801,7 @@
       <li><a href="#product">Market Intelligence Report — ₹2,499</a></li>
       <li><a href="#consulting">Full Consulting Service — ₹99,999</a></li>
       <li><a href="#consulting">International Advisory — ₹5,000</a></li>
-      <li><a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;">vivekgarodia4@gmail.com</a></li>
+      <li><a href="#" onclick="document.location='mail'+'to:vivekgarodia4@gmail.com';return false;"><span class="__cf_email__" data-cfemail="63150a1506080402110c070a025723040e020a0f4d000c0e">[email&#160;protected]</span></a></li>
       <li><a href="tel:+919867765454">+91 98677 65454</a></li>
     </ul>
   </div>
@@ -3077,7 +3083,7 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── MODAL FUNCTIONS ──
   function openReportModal(type) {
     var id = (type === 'nri') ? 'nriModal' : 'reportModal';
@@ -3131,10 +3137,4 @@
       }
     });
   },{threshold:0.1});
-  document.querySelectorAll('.why-card,.insight-card,.dev-card,.service-card,.case-card,.team-card,.diff-item,.consult-card').forEach(function(el){
-    el.style.opacity='0'; el.style.transform='translateY(24px)';
-    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-
-  //
+  document.que
